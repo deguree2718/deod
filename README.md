@@ -9,6 +9,6 @@ A simple bot, if anyone needs I can keep adding more stuff into it, so far it ha
 !roll [number]
 - generates a number from 1 through [number]
 
-# Download Emote
+## Download Emote
 !download :customEmote\:
 - gets the emote id and return the png or gif that originated the emote
