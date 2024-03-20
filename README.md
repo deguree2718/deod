@@ -12,3 +12,8 @@ A simple bot, if anyone needs I can keep adding more stuff into it, so far it ha
 ## Download Emote
 !download :customEmote\:
 - gets the emote id and return the png or gif that originated the emote
+
+## Download and Create Emote
+
+!downloadCreate :customEmote\:
+- does the same as !download but it replicates the emote into the current server
