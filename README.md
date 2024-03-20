@@ -17,3 +17,5 @@ A simple bot, if anyone needs I can keep adding more stuff into it, so far it ha
 
 !downloadCreate :customEmote\:
 - does the same as !download but it replicates the emote into the current server
+
+### **I will in time release an invite link, but I need to figure out what permissions exactly it needs**

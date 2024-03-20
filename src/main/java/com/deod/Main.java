@@ -29,7 +29,7 @@ public class Main {
                         List<String> splited = List.of(emote.split(":"));
                         boolean isAnimated = splited.get(0).equals("<a");
                         String idEmote = splited.get(splited.size() - 1).replace(">", "");
-                        String emoteName = splited.get(1);
+                        String emoteName = splited.get(splited.size() - 2);
                         String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
                         event.getChannel().sendMessage(url);
                         if (event.getServer().isPresent()){
@@ -50,8 +50,8 @@ public class Main {
                         String idEmote = splited.get(splited.size() - 1).replace(">", "");
                         String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
                         event.getChannel().sendMessage(url);
-                        log(event);
                     }
+                    log(event);
                 } else if (event.getMessageContent().startsWith("!roll")){
                     String amount = event.getMessageContent().equals("!roll") || event.getMessageContent().equals("!roll ") ? "20" : event.getMessageContent().substring(6);
                     Random rng = new Random();
