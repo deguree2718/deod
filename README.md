@@ -1,6 +1,6 @@
 # Download Emotes on Discord
 
-A simple bot, if anyone needs I can keep adding more stuff into it, so far it has two functions
+A simple bot, if anyone needs I can keep adding more stuff into it, so far it has four functions
 
 ## RNG
 !roll
