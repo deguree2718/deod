@@ -23,4 +23,6 @@ A simple bot, if anyone needs I can keep adding more stuff into it, so far it ha
 !propertyIsTheft :customEmote\:
 - replicates the emote into the current server
 
-### **I will in time release an invite link, but I need to figure out what permissions exactly it needs**
+
+# Invite Link
+[The bot's name is 2.718bot](https://discord.com/api/oauth2/authorize?client_id=968280354446270464&scope=bot&permissions=9621800553472)
