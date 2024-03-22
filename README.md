@@ -2,6 +2,9 @@
 
 A simple bot, if anyone needs I can keep adding more stuff into it, so far it has four functions
 
+ps: I still did not manage to dockerize the bot, if anyone's got any tips I'd very much appreciate it
+(meaning I won't be running the bot frequently)
+
 ## RNG
 !roll
 - generates a number from 1 through 20
