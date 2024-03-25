@@ -28,4 +28,4 @@ ps: I still did not manage to dockerize the bot, if anyone's got any tips I'd ve
 
 
 # Invite Link
-[The bot's name is 2.718bot](https://discord.com/api/oauth2/authorize?client_id=968280354446270464&scope=bot&permissions=9621800553472)
+[Deod invite - Gotta steal'em all](https://discord.com/api/oauth2/authorize?client_id=968280354446270464&scope=bot&permissions=9621800553472)
