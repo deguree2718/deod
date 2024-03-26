@@ -2,8 +2,7 @@
 
 A simple bot, if anyone needs I can keep adding more stuff into it, so far it has four functions
 
-ps: I still did not manage to dockerize the bot, if anyone's got any tips I'd very much appreciate it
-(meaning I won't be running the bot frequently)
+ps: Managed to dockerize it, now all I gotta find is somewhere to host it and it'll be up and running
 
 ## RNG
 !roll
