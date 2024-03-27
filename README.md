@@ -1,30 +1,70 @@
-# Download Emotes on Discord
+# EN
 
-A simple bot, if anyone needs I can keep adding more stuff into it, so far it has four functions
+## Download Emotes on Discord
 
-ps: Managed to dockerize it, now all I gotta find is somewhere to host it and it'll be up and running
+A simple bot, if anyone needs I can keep adding more stuff into it, so far it has five functions
 
-## RNG
-!roll
+### RNG
+$roll
 - generates a number from 1 through 20
 
-!roll [number]
+$roll [number]
 - generates a number from 1 through [number]
 
-## Download Emote
-!download :customEmote\:
+### Download Emote
+$download :customEmote\:
 - gets the emote id and return the png or gif that originated the emote
 
-## Download and Create Emote
+### Download and Create Emote
 
-!downloadCreate :customEmote\:
+$downloadCreate :customEmote\:
 - does the same as !download but it replicates the emote into the current server
 
-## Steal Emote in stealth mode
+### Steal Emote in stealth mode
 
-!propertyIsTheft :customEmote\:
+$propertyIsTheft :customEmote\:
 - replicates the emote into the current server
 
+### Help!
 
-# Invite Link
+$help
+- displays an embed with a list of the commands
+
+
+## Invite Link
 [Deod invite - Gotta steal'em all](https://discord.com/api/oauth2/authorize?client_id=968280354446270464&scope=bot&permissions=9621800553472)
+
+# PT-Br
+
+### Baixando Emotes do Discord
+
+Um bot simplório, se alguém quiser eu posso adicionar mais coisa nele, por hora tem 5 funções
+
+### RNG
+$roll
+- gera um número aleatório de 1 a 20
+
+$roll [número]
+- gera um número aleatório de 1 a [número]
+
+### Baixar Emote
+$download :customEmote\:
+- captura o id do emote e envia a imagem ou gif fonte
+
+### Baixar e Criar Emoji
+
+$downloadCreate :emojiCustomizado\:
+- mesma coisa que $download, mas copia o emoji pro servidor atual
+
+### Furto de Emoji
+
+$propertyIsTheft :emojiCustomizado\:
+- replica o emoji no servidor atual
+
+### Guia
+
+$help
+- envia um embed com uma lista de comandos do bot (por hora somente em inglês)
+
+## Link para convidar o bot
+[Deod convite](https://discord.com/api/oauth2/authorize?client_id=968280354446270464&scope=bot&permissions=9621800553472)
