@@ -115,19 +115,19 @@ public class Main {
             }
         });
 
-        api.addReactionAddListener(event -> {
-            try{
-                if (event.getEmoji().asUnicodeEmoji().get().equals("U+1F4BE")){
-                    long messageId = event.getMessageId();
-                    Message message = api.getMessageById(messageId, event.getChannel()).get();
-                    StickerItem sticker = message.getStickerItems().stream().findFirst().get();
-                    URI image = new URI("https://media.discordapp.net/stickers/" + sticker.getIdAsString() + ".png?size=480");
-                    message.getChannel().sendMessage(image.toString());
-                }
-            } catch (Exception e){
-               System.out.println(e.getMessage());
-            }
-        });
+//        api.addReactionAddListener(event -> {
+//            try{
+//                if (event.getEmoji().asUnicodeEmoji().get().equals("U+1F4BE")){
+//                    long messageId = event.getMessageId();
+//                    Message message = api.getMessageById(messageId, event.getChannel()).get();
+//                    StickerItem sticker = message.getStickerItems().stream().findFirst().get();
+//                    URI image = new URI("https://media.discordapp.net/stickers/" + sticker.getIdAsString() + ".png?size=480");
+//                    message.getChannel().sendMessage(image.toString());
+//                }
+//            } catch (Exception e){
+//               System.out.println(e.getMessage());
+//            }
+//        });
     }
 
     private static void log(MessageCreateEvent event){
