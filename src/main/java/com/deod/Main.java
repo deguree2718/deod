@@ -26,21 +26,21 @@ public class Main {
 
         api.addMessageCreateListener(event -> {
             try {
-                if (event.getMessageContent().startsWith("!help")){
+                if (event.getMessageContent().startsWith("$help")){
                     EmbedBuilder embed = new EmbedBuilder()
                             .setTitle("Help")
                             .setDescription("Guiding you thorugh Deod")
                             .setAuthor("ya boy Degure")
-                            .addField("!help", "Show this embed, listing the possible commands for Deod")
-                            .addInlineField("!downloadCreate :customEmote:", "sends the source of the emote, and adds it into the current server (doesn't work on DMs)")
-                            .addInlineField("!download :customEmote:", "sends the source of the emote (does work on DMs)")
-                            .addInlineField("!propertyIsTheft :customEmote:", "adds the emote into the current server (doesn't work on DMs)")
-                            .addInlineField("!roll [number]", "generates a RNG between 1 and the number sent, standard is 20, so if you don't send any numbers it'll roll between 1 and 20")
+                            .addField("$help", "Show this embed, listing the possible commands for Deod")
+                            .addInlineField("$downloadCreate :customEmote:", "sends the source of the emote, and adds it into the current server (doesn't work on DMs)")
+                            .addInlineField("$download :customEmote:", "sends the source of the emote (does work on DMs)")
+                            .addInlineField("$propertyIsTheft :customEmote:", "adds the emote into the current server (doesn't work on DMs)")
+                            .addInlineField("$roll [number]", "generates a RNG between 1 and the number sent, standard is 20, so if you don't send any numbers it'll roll between 1 and 20")
                             .setColor(Color.CYAN);
                     event.getChannel().sendMessage(embed);
                     log(event);
                 }
-                else if (event.getMessageContent().startsWith("!downloadCreate")) {
+                else if (event.getMessageContent().startsWith("$downloadCreate")) {
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")) {
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
                         List<String> splited = List.of(emote.split(":"));
@@ -59,7 +59,7 @@ public class Main {
                         }
                         log(event);
                     }
-                } else if (event.getMessageContent().startsWith("!propertyIsTheft")){
+                } else if (event.getMessageContent().startsWith("$propertyIsTheft")){
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")) {
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
                         List<String> splited = List.of(emote.split(":"));
@@ -77,7 +77,7 @@ public class Main {
                         }
                         log(event);
                     }
-                } else if (event.getMessageContent().startsWith("!download")){
+                } else if (event.getMessageContent().startsWith("$download")){
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")){
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
                         List<String> splited = List.of(emote.split(":"));
@@ -87,13 +87,13 @@ public class Main {
                         event.getChannel().sendMessage(url);
                     }
                     log(event);
-                } else if (event.getMessageContent().startsWith("!roll")){
-                    String amount = event.getMessageContent().equals("!roll") || event.getMessageContent().equals("!roll ") ? "20" : event.getMessageContent().substring(6);
+                } else if (event.getMessageContent().startsWith("$roll")){
+                    String amount = event.getMessageContent().equals("$roll") || event.getMessageContent().equals("!roll ") ? "20" : event.getMessageContent().substring(6);
                     Random rng = new Random();
                     Integer generated = rng.ints(1, 1, Integer.parseInt(amount)).sum();
                     event.getChannel().sendMessage(generated.toString());
                     log(event);
-                } else if (event.getMessageContent().equals("!my_github")){
+                } else if (event.getMessageContent().equals("$my_github")){
                     event.getChannel().sendMessage("https://github.com/deguree2718/deod");
                     log(event);
                 }
