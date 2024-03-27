@@ -3,18 +3,19 @@ package com.deod;
 import org.javacord.api.*;
 import org.javacord.api.entity.emoji.CustomEmojiBuilder;
 import org.javacord.api.entity.intent.*;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
+import org.javacord.api.interaction.*;
 
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.*;
 import java.util.List;
-import java.util.Base64;
-import java.util.Random;
-import java.util.Set;
 
 public class Main {
 
@@ -25,7 +26,21 @@ public class Main {
 
         api.addMessageCreateListener(event -> {
             try {
-                if (event.getMessageContent().startsWith("!downloadCreate")) {
+                if (event.getMessageContent().startsWith("!help")){
+                    EmbedBuilder embed = new EmbedBuilder()
+                            .setTitle("Help")
+                            .setDescription("Guiding you thorugh Deod")
+                            .setAuthor("ya boy Degure")
+                            .addField("!help", "Show this embed, listing the possible commands for Deod")
+                            .addInlineField("!downloadCreate :customEmote:", "sends the source of the emote, and adds it into the current server (doesn't work on DMs)")
+                            .addInlineField("!download :customEmote:", "sends the source of the emote (does work on DMs)")
+                            .addInlineField("!propertyIsTheft :customEmote:", "adds the emote into the current server (doesn't work on DMs)")
+                            .addInlineField("!roll [number]", "generates a RNG between 1 and the number sent, standard is 20, so if you don't send any numbers it'll roll between 1 and 20")
+                            .setColor(Color.CYAN);
+                    event.getChannel().sendMessage(embed);
+                    log(event);
+                }
+                else if (event.getMessageContent().startsWith("!downloadCreate")) {
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")) {
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
                         List<String> splited = List.of(emote.split(":"));
