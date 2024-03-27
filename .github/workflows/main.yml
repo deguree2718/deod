@@ -1,3 +1,5 @@
+name: post_to_announcement
+on: [push]
 jobs:
   push_to_update:
     runs-on: ubuntu-latest
