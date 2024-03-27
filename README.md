@@ -30,6 +30,11 @@ $propertyIsTheft :customEmote\:
 $help
 - displays an embed with a list of the commands
 
+### Fake Nitro
+
+$nitro :customEmote\:
+- deletes the triggering message and sends the emote as the source image of it back
+
 
 ## Invite Link
 [Deod invite - Gotta steal'em all](https://discord.com/api/oauth2/authorize?client_id=968280354446270464&scope=bot&permissions=9621800553472)
@@ -38,7 +43,7 @@ $help
 
 ### Baixando Emotes do Discord
 
-Um bot simplório, se alguém quiser eu posso adicionar mais coisa nele, por hora tem 5 funções
+Um bot simplório, se alguém quiser eu posso adicionar mais coisa nele, por hora tem 6 funções
 
 ### RNG
 $roll
@@ -65,6 +70,11 @@ $propertyIsTheft :emojiCustomizado\:
 
 $help
 - envia um embed com uma lista de comandos do bot (por hora somente em inglês)
+
+### Fake Nitro
+
+$nitro :emojiCustomizado\:
+- deleta a mensagem de origem e envia a imagem fonte do emoji logo em seguida
 
 ## Link para convidar o bot
 [Deod convite](https://discord.com/api/oauth2/authorize?client_id=968280354446270464&scope=bot&permissions=9621800553472)
