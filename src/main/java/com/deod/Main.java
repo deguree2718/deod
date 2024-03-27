@@ -4,6 +4,7 @@ import org.javacord.api.*;
 import org.javacord.api.entity.emoji.CustomEmojiBuilder;
 import org.javacord.api.entity.intent.*;
 import org.javacord.api.entity.server.Server;
+import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 import java.io.ByteArrayOutputStream;
@@ -13,13 +14,14 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Base64;
 import java.util.Random;
+import java.util.Set;
 
 public class Main {
 
     public static void main(String[] args) {
         String token = System.getenv("TOKEN");
 
-        DiscordApi api = new DiscordApiBuilder().setToken(token).addIntents(Intent.MESSAGE_CONTENT).addIntents(Intent.GUILD_EMOJIS).login().join();
+        DiscordApi api = new DiscordApiBuilder().setToken(token).addIntents(Intent.MESSAGE_CONTENT).addIntents(Intent.GUILD_EMOJIS).addIntents(Intent.GUILD_MEMBERS).login().join();
 
         api.addMessageCreateListener(event -> {
             try {
