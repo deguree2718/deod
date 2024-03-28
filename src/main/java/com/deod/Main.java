@@ -35,7 +35,7 @@ public class Main {
                 if (event.getMessageContent().startsWith("$help")){
                     EmbedBuilder embed = new EmbedBuilder()
                             .setTitle("Help")
-                            .setDescription("Guiding you thorugh Deod")
+                            .setDescription("Guiding you through Deod")
                             .setAuthor("ya boy Degure")
                             .addField("$help", "Show this embed, listing the possible commands for Deod")
                             .addField("$downloadCreate :customEmote:", "sends the source of the emote, and adds it into the current server (doesn't work on DMs)")
