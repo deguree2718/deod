@@ -54,7 +54,7 @@ public class Main {
                         String idEmote = splited.get(splited.size() - 1).replace(">", "");
                         String emoteName = splited.get(splited.size() - 2);
                         String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
-                        event.getChannel().sendMessage(url);
+                        event.getChannel().sendMessage(url + "?size=480");
                         if (event.getServer().isPresent()) {
                             URL imageUrl = new URL(url);
                             Server curServ = event.getServer().get();
@@ -87,7 +87,7 @@ public class Main {
                         List<String> splited = List.of(emote.split(":"));
                         boolean isAnimated = splited.get(0).equals("<a");
                         String idEmote = splited.get(splited.size() - 1).replace(">", "");
-                        String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
+                        String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png" + "?size=480");
                         event.getChannel().sendMessage(url);
                     }
                 } else if (event.getMessageContent().startsWith("$roll")){
@@ -103,7 +103,7 @@ public class Main {
                     List<String> splited = List.of(emote.split(":"));
                     boolean isAnimated = splited.get(0).equals("<a");
                     String idEmote = splited.get(splited.size() - 1).replace(">", "");
-                    String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
+                    String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png" + "?size=480");
                     event.getChannel().sendMessage(url);
                     var delete = event.getMessage().canYouDelete() ? event.getMessage().delete() : null;
                 }
