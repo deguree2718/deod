@@ -1,7 +1,5 @@
 name: post_to_announcement
 on: 
-  pull_request:
-    types: [closed]
   push:
     branches:
       - 'main'
@@ -12,4 +10,4 @@ jobs:
       - name: Make sure CURL is installed
         run: sudo apt install curl
       - name: Post changes to Announcement
-        run: curl -x POST https://discord.com/api/webhooks/1222639782115545189/nD00Hvi2Gy0SrM1L3uW4dVnQlDweJurTWZmknqd19Lcgba6tdHGg_Svdh7Fsy3Fm63xf -d '{"content":"TESTE"}'
+        run: curl -X POST https://discord.com/api/webhooks/1222639782115545189/nD00Hvi2Gy0SrM1L3uW4dVnQlDweJurTWZmknqd19Lcgba6tdHGg_Svdh7Fsy3Fm63xf -d '{"content":"TESTE"}'
