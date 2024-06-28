@@ -1,6 +1,7 @@
 package com.deod;
 
 import org.javacord.api.*;
+import org.javacord.api.entity.Icon;
 import org.javacord.api.entity.emoji.CustomEmojiBuilder;
 import org.javacord.api.entity.intent.*;
 import org.javacord.api.entity.message.Message;
@@ -41,6 +42,7 @@ public class Main {
                             .addField("$help", "Show this embed, listing the possible commands for Deod")
                             .addField("$downloadCreate :customEmote:", "sends the source of the emote, and adds it into the current server (doesn't work on DMs)")
                             .addField("$download :customEmote:", "sends the source of the emote (does work on DMs)")
+                            .addInlineField("$download @user", "sends the avatar of the mentioned user (does work on DMs)")
                             .addField("$propertyIsTheft :customEmote:", "adds the emote into the current server (doesn't work on DMs)")
                             .addField("$roll [number]", "generates a RNG between 1 and the number sent, standard is 20, so if you don't send any numbers it'll roll between 1 and 20")
                             .addField("$roll [number]d[number]", "generates an amount of numbers equal to the first number, each with a max equal to the second number, shows the numbers rolled and the sum of them all")
@@ -52,7 +54,7 @@ public class Main {
                             .setColor(Color.CYAN);
                     event.getChannel().sendMessage(embed);
                 }
-                else if (event.getMessageContent().startsWith("$downloadCreate")) {
+                else if (event.getMessageContent().startsWith("$downloadCreate") || event.getMessageContent().startsWith("$dc")) {
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")) {
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
                         List<String> splited = List.of(emote.split(":"));
@@ -70,7 +72,7 @@ public class Main {
                             emojiBuilder.create();
                         }
                     }
-                } else if (event.getMessageContent().startsWith("$propertyIsTheft")){
+                } else if (event.getMessageContent().startsWith("$propertyIsTheft") || event.getMessageContent().startsWith("$pit")){
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")) {
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
                         List<String> splited = List.of(emote.split(":"));
@@ -87,7 +89,7 @@ public class Main {
                             emojiBuilder.create();
                         }
                     }
-                } else if (event.getMessageContent().startsWith("$download")){
+                } else if (event.getMessageContent().startsWith("$download") || event.getMessageContent().startsWith("$d")){
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")){
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
                         List<String> splited = List.of(emote.split(":"));
@@ -95,6 +97,16 @@ public class Main {
                         String idEmote = splited.get(splited.size() - 1).replace(">", "");
                         String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
                         event.getChannel().sendMessage(url);
+                    } else if (event.getMessageContent().contains("@")){
+                        String userId = event.getMessageContent().substring(event.getMessageContent().indexOf("@") + 1, event.getMessageContent().indexOf(">"));
+                        User pinged = api.getUserById(userId).get();
+                        if (event.getServer().isPresent()){
+                            Icon avatar = pinged.getEffectiveAvatar(event.getServer().get());
+                            event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
+                        } else {
+                            Icon avatar = pinged.getAvatar();
+                            event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
+                        }
                     }
                 } else if (event.getMessageContent().startsWith("$roll")){
                     String amount = event.getMessageContent().equals("$roll") ? "20" : event.getMessageContent().substring(6);
