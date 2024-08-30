@@ -108,8 +108,8 @@ public class Main {
                             event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
                         }
                     }
-                } else if (event.getMessageContent().startsWith("$roll") || event.getMessagecontent().startsWith("$r")) {
-                    String amount = event.getMessageContent().equals("$roll") || event.getMessageContent().equals("$r") ? "20" : event.getMessageContent().substring(6);
+                } else if (event.getMessageContent().startsWith("$roll") || event.getMessageContent().startsWith("$r")) {
+                    String amount = event.getMessageContent().equals("$roll") || event.getMessageContent().equals("$r") ? "20" : event.getMessageContent().substring(event.getMessageContent().indexOf(" ") + 1);
                     String flags = "";
                     if(amount.indexOf(" ") > -1){
                         flags = amount.substring(amount.indexOf(" "));
