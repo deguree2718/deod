@@ -152,13 +152,19 @@ public class Main {
                 } else if (event.getMessageContent().equals("$my_github")) {
                     event.getChannel().sendMessage("https://github.com/deguree2718/deod");
                 } else if (event.getMessageContent().startsWith("$nitro")){
-                    String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
-                    List<String> splited = List.of(emote.split(":"));
-                    boolean isAnimated = splited.get(0).equals("<a");
-                    String idEmote = splited.get(splited.size() - 1).replace(">", "");
-                    String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
-                    event.getChannel().sendMessage(url);
-                    var delete = event.getMessage().canYouDelete() ? event.getMessage().delete() : null;
+                    if (event.getMessageContent().contains("<")){
+                        String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
+                        List<String> splited = List.of(emote.split(":"));
+                        boolean isAnimated = splited.get(0).equals("<a");
+                        String idEmote = splited.get(splited.size() - 1).replace(">", "");
+                        String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
+                        event.getChannel().sendMessage(url);
+                        if (event.getMessage().canYouDelete()) {
+                            event.getMessage().delete();
+                        }
+                    } else {
+                        String nMessage = event.getMessageContent().substring(7);
+                    }
                 }
                 if (event.getMessageContent().startsWith("$")){
                     log(event);
@@ -191,6 +197,15 @@ public class Main {
         }
         System.out.println(event.getMessageContent() + " | Err: " + e.getMessage());
         System.out.println("-------------------------------------------------------------------");
+        EmbedBuilder embed = new EmbedBuilder()
+                .setTitle("Err")
+                .setDescription("Something wrong ain't right | Algo de errado não tá certo")
+                .setAuthor("degure, the creator")
+                .addField("Algo deu errado, manda print pro deguree2.718 ver oq pode ser", "")
+                .addField("Something went wrong, send a screenshot to deguree2.718 so they can check on the error", "")
+                .addField("Error:", e.getMessage())
+                .setColor(Color.CYAN);
+        event.getChannel().sendMessage(embed);
     }
 
 }
