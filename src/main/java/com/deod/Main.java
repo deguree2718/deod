@@ -2,6 +2,7 @@ package com.deod;
 
 import org.javacord.api.*;
 import org.javacord.api.entity.Icon;
+import org.javacord.api.entity.emoji.KnownCustomEmoji;
 import org.javacord.api.entity.emoji.CustomEmojiBuilder;
 import org.javacord.api.entity.intent.*;
 import org.javacord.api.entity.message.Message;
@@ -163,7 +164,22 @@ public class Main {
                             event.getMessage().delete();
                         }
                     } else {
-                        String nMessage = event.getMessageContent().substring(7);
+                        String nMessage = event.getMessageContent().substring(8, event.getMessageContent().length() - 1);
+                        System.out.println(nMessage);
+                        if (event.getServer().isPresent()) {
+                            Server curServ = event.getServer().get();
+                            if (curServ.getCustomEmojisByName(nMessage).size() > 0) {
+                                KnownCustomEmoji emoji = curServ.getCustomEmojisByName(nMessage).stream().findFirst().get();
+                                event.getChannel().sendMessage(emoji.getImage().getUrl().toString());
+                                if (event.getMessage().canYouDelete()) {
+                                    event.getMessage().delete();
+                                }
+                            } else {
+                                System.out.println("No custom emoji found");
+                            }
+                        } else {
+                            System.out.println("Not in a server?");
+                        }
                     }
                 }
                 if (event.getMessageContent().startsWith("$")){
