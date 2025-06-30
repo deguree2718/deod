@@ -109,7 +109,7 @@ public class Main {
                             event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
                         }
                     }
-                } else if (event.getMessageContent().startsWith("$roll")){
+                } else if (event.getMessageContent().startsWith("$roll") && !event.getMessageContent().equals("$rolls")){
                     String amount = event.getMessageContent().equals("$roll") ? "20" : event.getMessageContent().substring(6);
                     String flags = "";
                     if(amount.indexOf(" ") > -1){
