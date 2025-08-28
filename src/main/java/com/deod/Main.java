@@ -109,17 +109,23 @@ public class Main {
                             event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
                         }
                     }
-                } else if (event.getMessageContent().startsWith("$roll") && !event.getMessageContent().equals("$rolls")){
+                } else if ((event.getMessageContent().startsWith("$roll") && !event.getMessageContent().equals("$rolls"))) {
                     String amount = event.getMessageContent().equals("$roll") ? "20" : event.getMessageContent().substring(6);
                     String flags = "";
                     if(amount.indexOf(" ") > -1){
                         flags = amount.substring(amount.indexOf(" "));
                         amount = amount.substring(0, amount.indexOf(" "));
                     }
+                    System.out.println(flags);
                     Random rng = new Random();
                     Integer generated = 0;
                     if (amount.contains("d")){
-                        Integer quantity = Integer.parseInt(amount.split("d")[0]);
+                        Integer quantity;
+                        try{
+                            quantity = Integer.parseInt(amount.split("d")[0]);
+                        } catch (Exception e){
+                            quantity = 1;
+                        }
                         Integer sides = Integer.parseInt(amount.split("d")[1]);
                         List<Integer> generatedList = rng.ints(quantity,1,sides).boxed().collect(Collectors.toList());
                         if (flags.contains("disadv")){
@@ -134,7 +140,7 @@ public class Main {
                                     generated = val;
                                 }
                             }
-                        } else if (flags.contains("h3") || quantity >= 3) {
+                        } else if (flags.contains("kh3")) {
                             generatedList.sort(null);
                             Collections.reverse(generatedList);
                             generated = generatedList.get(0) + generatedList.get(1) + generatedList.get(2);
@@ -143,6 +149,15 @@ public class Main {
                             for(Integer val : generatedList){
                                 generated += val;
                             }
+                        }
+                        if (flags.contains("+")) {
+                            int bonus = Integer.parseInt(flags.substring(flags.indexOf("+") +1).trim());
+                            System.out.println(bonus);
+                            generated += bonus;
+                        } else if (flags.contains("-")) {
+                            int penalty = Integer.parseInt(flags.substring(flags.indexOf("-") +1).trim());
+                            System.out.println(penalty);
+                            generated -= penalty;
                         }
                         event.getChannel().sendMessage(generatedList.toString() + "\n" +
                                 "**" + generated + "**");
