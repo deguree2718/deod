@@ -72,6 +72,8 @@ public class Main {
                             emojiBuilder.setImage(imageUrl);
                             emojiBuilder.create();
                         }
+                    } else {
+                        event.getChannel().sendMessage("Listen here mate, I need *something* so I can grip at | Escuta, eu preciso de alguma coisa pra poder pegar");
                     }
                 } else if (event.getMessageContent().startsWith("$propertyIsTheft") || event.getMessageContent().startsWith("$pit")){
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")) {
@@ -89,6 +91,8 @@ public class Main {
                             emojiBuilder.setImage(imageUrl);
                             emojiBuilder.create();
                         }
+                    } else {
+                        event.getChannel().sendMessage("Look, I may be a thief, but I need *something* to steal | Olha, eu posso até ser uma ladra, mas eu preciso de *alguma coisa* pra roubar");
                     }
                 } else if (event.getMessageContent().startsWith("$download") || event.getMessageContent().startsWith("$d")){
                     if (event.getMessageContent().contains("<:") || event.getMessageContent().contains("<a:")){
@@ -99,14 +103,18 @@ public class Main {
                         String url = "https://cdn.discordapp.com/emojis/" + idEmote + (isAnimated ? ".gif" : ".png");
                         event.getChannel().sendMessage(url);
                     } else if (event.getMessageContent().contains("@")){
-                        String userId = event.getMessageContent().substring(event.getMessageContent().indexOf("@") + 1, event.getMessageContent().indexOf(">"));
-                        User pinged = api.getUserById(userId).get();
-                        if (event.getServer().isPresent()){
-                            Icon avatar = pinged.getEffectiveAvatar(event.getServer().get());
-                            event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
-                        } else {
-                            Icon avatar = pinged.getAvatar();
-                            event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
+                        try{
+                            String userId = event.getMessageContent().substring(event.getMessageContent().indexOf("@") + 1, event.getMessageContent().indexOf(">"));
+                            User pinged = api.getUserById(userId).get();
+                            if (event.getServer().isPresent()){
+                                Icon avatar = pinged.getEffectiveAvatar(event.getServer().get());
+                                event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
+                            } else {
+                                Icon avatar = pinged.getAvatar();
+                                event.getChannel().sendMessage("https://cdn.discordapp.com" + avatar.getUrl().getFile());
+                            }
+                        } catch (Exception e){
+                            event.getChannel().sendMessage("Idk mate, something went wrong, u sure you pinged someone to get their avatar? | Deu algo de errado parça, certeza q tu marcou alguém pra pegar o avatar?");
                         }
                     }
                 } else if ((event.getMessageContent().startsWith("$roll") && !event.getMessageContent().equals("$rolls"))) {
@@ -116,7 +124,6 @@ public class Main {
                         flags = amount.substring(amount.indexOf(" "));
                         amount = amount.substring(0, amount.indexOf(" "));
                     }
-                    System.out.println(flags);
                     Random rng = new Random();
                     Integer generated = 0;
                     if (amount.contains("d")){
@@ -152,11 +159,9 @@ public class Main {
                         }
                         if (flags.contains("+")) {
                             int bonus = Integer.parseInt(flags.substring(flags.indexOf("+") +1).trim());
-                            System.out.println(bonus);
                             generated += bonus;
                         } else if (flags.contains("-")) {
                             int penalty = Integer.parseInt(flags.substring(flags.indexOf("-") +1).trim());
-                            System.out.println(penalty);
                             generated -= penalty;
                         }
                         event.getChannel().sendMessage(generatedList.toString() + "\n" +
@@ -166,7 +171,7 @@ public class Main {
                         event.getChannel().sendMessage(generated.toString());
                     }
                 } else if (event.getMessageContent().equals("$my_github")) {
-                    event.getChannel().sendMessage("https://github.com/deguree2718/deod");
+                    event.getChannel().sendMessage("[Hey you can star me here! I'd be very grateful if you did, honestly](https://github.com/deguree2718/deod)");
                 } else if (event.getMessageContent().startsWith("$nitro")){
                     if (event.getMessageContent().contains("<")){
                         String emote = event.getMessageContent().substring(event.getMessageContent().indexOf("<"), event.getMessageContent().indexOf(">"));
@@ -190,10 +195,10 @@ public class Main {
                                     event.getMessage().delete();
                                 }
                             } else {
-                                System.out.println("No custom emoji found");
+                                event.getChannel().sendMessage("Idk what emote you tried, but it's not there | N sei que emote tu tentou, mas ele foi de arrasta");
                             }
                         } else {
-                            System.out.println("Not in a server?");
+                            event.getChannel().sendMessage("How about trying this on a server huh? | Já pensou em testar isso no servidor que tem o emote? as vezes ajuda");
                         }
                     }
                 }
